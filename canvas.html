@@ -20,7 +20,7 @@
 		var x = event.clientX; // getting x and y coordinates of mouse 
 		var y = event.clientY;  
 		ctx.fillStyle = '#'+Math.random().toString(16).substr(-6); //creds to stack overflow
-		ctx.fillRect(x,y,50,75); //make the rectangle
+		ctx.fillRect(x-10,y-10,50,75); //make the rectangle
 		ctx.restore(); //restore the setting to before the alpha was set
 	});
 
