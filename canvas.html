@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+	<canvas id="slate" width="500" height="400" style="border:1px solid #000000;">
+
+	</canvas>
+	<br/>
+	<button id="rock">hello</button>
+</body>
+
+<script>
+	var c = document.getElementById('slate');
+
+	var ctx = c.getContext("2d");
+	
+	c.addEventListener('click', function (e){
+		ctx.fillStyle = "#ff0000"; 
+		ctx.fillRect(50,50,100,200);
+	});
+
+
+	var clicked = document.getElementById('rock');
+	clicked.addEventListener('click', function (e) {
+		ctx.fillStyle = "white"
+		ctx.fillRect(0, 0, c.width, c.height);
+	});
+</script>
+
+
+</html>
