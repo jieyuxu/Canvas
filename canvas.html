@@ -5,29 +5,29 @@
 	</canvas>
 	<br/>
 	<button id="rock">erase!</button>
-
-</body>
-
-<script>
-	var c = document.getElementById('slate');
-
-	var ctx = c.getContext("2d");
 	
-	c.addEventListener('click', function (e){
-		ctx.save();
-		ctx.globalAlpha = 0.4; //transparency
-		var x = event.clientX; // getting x and y coordinates of mouse 
-		var y = event.clientY;  
-		ctx.fillStyle = '#'+Math.random().toString(16).substr(-6); //creds to stack overflow
-		ctx.fillRect(x-10,y-10,50,75); //make the rectangle
-		ctx.restore(); //restore the setting to before the alpha was set
-	});
+	<script>
+		var c = document.getElementById('slate');
+
+		var ctx = c.getContext("2d");
+		
+		c.addEventListener('click', function (e){
+			ctx.save();
+			ctx.globalAlpha = 0.4; //transparency
+			var x = event.clientX; // getting x and y coordinates of mouse 
+			var y = event.clientY;  
+			ctx.fillStyle = '#'+Math.random().toString(16).substr(-6); //creds to stack overflow
+			ctx.fillRect(x-10,y-10,50,75); //make the rectangle
+			ctx.restore(); //restore the setting to before the alpha was set
+		});
 
 
-	var clicked = document.getElementById('rock');
-	clicked.addEventListener('click', function (e) {
-		ctx.fillStyle = "white"
-		ctx.fillRect(0, 0, c.width, c.height);
-	});
-</script>
+		var clicked = document.getElementById('rock');
+		clicked.addEventListener('click', function (e) {
+			ctx.fillStyle = "white"
+			ctx.fillRect(0, 0, c.width, c.height);
+		});
+	</script>
+
+	</body>
 </html>
