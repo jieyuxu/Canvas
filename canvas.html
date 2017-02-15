@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
+
+
 	<canvas id="slate" width="500" height="400" style="border:1px solid #000000;">
 	</canvas>
 	<br/>
+	I want to use...: <br/>
+	<button id="circle">circles</button>
+	<button id="rec">rectangles</button>
+	<hr>
+	To erase the canvas: <br/>
 	<button id="rock">erase!</button>
 	
 	<script>
@@ -11,21 +18,56 @@
 
 		var ctx = c.getContext("2d");
 		
-		c.addEventListener('click', function (e){
-			ctx.save();
-			ctx.globalAlpha = 0.4; //transparency
-			var x = event.clientX; // getting x and y coordinates of mouse 
-			var y = event.clientY;  
-			ctx.fillStyle = '#'+Math.random().toString(16).substr(-6); //creds to stack overflow
-			ctx.fillRect(x-10,y-10,50,75); //make the rectangle
-			ctx.restore(); //restore the setting to before the alpha was set
-		});
+		var todo;
 
+		var nx;
+		var ny;
+
+		ctx.beginPath();
 
 		var clicked = document.getElementById('rock');
 		clicked.addEventListener('click', function (e) {
-			ctx.fillStyle = "white"
-			ctx.fillRect(0, 0, c.width, c.height);
+			ctx.beginPath();
+			ctx.clearRect(0, 0, c.width, c.height);
+		});
+
+		var circle = document.getElementById('circle');
+		circle.addEventListener('click', function (e) {
+			todo = true;
+		});
+
+		var rectangle = document.getElementById('rec');
+		rectangle.addEventListener('click', function (e) {
+			todo = false;
+		});
+
+		c.addEventListener('click', function (e){
+			if (todo){
+				var x = event.clientX; // getting x and y coordinates of mouse 
+				var y = event.clientY;  
+
+				nx = x;
+				ny = y;
+
+				ctx.arc(x, y, 10, 0, 2 * Math.PI, false);
+				ctx.fill();
+
+				ctx.moveTo(nx,ny);
+				ctx.lineWidth = 1;
+				ctx.fillStyle = '#'+Math.random().toString(16).substr(-6); //creds to stack 
+				ctx.stroke();
+				ctx.closePath();
+
+			}
+			else{
+				ctx.save();
+				ctx.globalAlpha = 0.4; //transparency
+				var x = event.clientX; // getting x and y coordinates of mouse 
+				var y = event.clientY;  
+				ctx.fillStyle = '#'+Math.random().toString(16).substr(-6); //creds to stack overflow
+				ctx.fillRect(x-10,y-10,50,75); //make the rectangle
+				ctx.restore(); //restore the setting to before the alpha was set
+			}
 		});
 	</script>
 
